@@ -4,7 +4,8 @@
   "author": "krabaton",
   "license": "ISC",
   "scripts": {
-    "start": "set NODE_ENV=development&& gulp",
+    "start": "nodemon --ignore data/ app.js",
+    "start_gulp": "set NODE_ENV=development&& gulp",
     "build": "set NODE_ENV=production&& gulp build"
   },
   "devDependencies": {
@@ -40,6 +41,13 @@
   },
   "dependencies": {
     "jquery": "^3.3.1",
+    "koa": "^2.7.0",
+    "koa-body": "^4.1.0",
+    "koa-flash-simple": "0.0.3",
+    "koa-pug": "^3.0.0-2",
+    "koa-router": "^7.4.0",
+    "koa-session": "^5.12.0",
+    "koa-static": "^5.0.0",
     "normalize.css": "^7.0.0"
   }
 }

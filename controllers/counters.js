@@ -11,7 +11,9 @@ module.exports.get = (req, res) => {
     return counters;
 };
 
-module.exports.update = ({age, concerts, cities, years}) => {
+module.exports.update = (req, res) => {
+
+    const {age, concerts, cities, years} = req.body;
 
     let counters = [];
     if (fs.existsSync(countersPath)) {
@@ -24,4 +26,5 @@ module.exports.update = ({age, concerts, cities, years}) => {
     if (years) counters.find(v => v.id === 'years').number = parseInt(years);
 
     fs.writeFileSync(path.join(process.cwd(), '/data/counters.json'), JSON.stringify(counters));
+    res.redirect('/admin');
 };

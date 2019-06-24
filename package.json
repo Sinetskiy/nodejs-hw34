@@ -4,8 +4,9 @@
   "author": "krabaton",
   "license": "ISC",
   "scripts": {
-    "start": "set NODE_ENV=development&& gulp",
-    "build": "set NODE_ENV=production&& gulp build"
+    "start": "node app.js",
+    "start_gulp": "set NODE_ENV=development && gulp",
+    "build": "set NODE_ENV=production && gulp build"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -39,7 +40,12 @@
     "vinyl-source-stream": "^2.0.0"
   },
   "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "express-session": "^1.16.2",
+    "formidable": "^1.2.1",
     "jquery": "^3.3.1",
+    "nodemailer": "^6.2.1",
     "normalize.css": "^7.0.0"
   }
 }

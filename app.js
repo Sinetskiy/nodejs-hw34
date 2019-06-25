@@ -1,39 +1,13 @@
 const Koa = require('koa');
 const app = new Koa();
+const middleware = require('./middleware/main');
 
-const Pug = require('koa-pug');
-const pug = new Pug({
-  viewPath: './views/pages',
-  basedir: './views',
-  pretty: true,
-  noCache: true,
-  app: app
-});
+middleware.pug(app);
 
-const static = require('koa-static');
-app.use(static('./public'));
-
-const session = require('koa-session');
-app.use(session({
-    key: 'koa:sess',
-    maxAge: 'session',
-    overwrite: true,
-    httpOnly: true,
-    signed: false,
-    rolling: false,
-    renew: false
-}, app));
-
-const flash = require('koa-flash-simple');
-app.use(flash());
-
-const koaBody = require('koa-body');
-app.use(koaBody({
-  formidable: {
-    uploadDir: './public/assets/img/products/'
-  },
-  multipart: true
-}));
+app.use(middleware.static);
+app.use(middleware.session(app));
+app.use(middleware.flash);
+app.use(middleware.koaBody);
 
 const router = require('./router');
 app.use(router.routes());
